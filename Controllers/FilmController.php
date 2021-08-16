@@ -16,19 +16,19 @@ class FilmController
         } else {
             $films = $getFilms->getAll($_POST['sorting']);
         }
-        require __DIR__ .'\..\Views\showFilms.php';
+        require __DIR__ .'/../Views/showFilms.php';
 
     }
 
     public function add()
     {
         if(!$_POST){
-            require_once __DIR__ .'\..\Views\addFilm.php';
+            require_once __DIR__ .'/../Views/addFilm.php';
         } else {
             $data = $_POST;
             $insert = new Film();
             $insert->insert($data);
-            require_once __DIR__ .'\..\Views\addFilm.php';
+            require_once __DIR__ .'/../Views/addFilm.php';
         }
     }
 
@@ -79,9 +79,9 @@ class FilmController
             $insert = new Film();
             $insert->import($films);
 
-            require_once __DIR__ .'\..\Views\addFilm.php';
+            require_once __DIR__ .'/../Views/addFilm.php';
         } else {
-            require __DIR__ .'\..\Views\importFilm.php';
+            require __DIR__ .'/../Views/importFilm.php';
         }
     }
 
@@ -96,7 +96,7 @@ class FilmController
             header('Location: /');
         }
 
-        require __DIR__ .'\..\Views\searchFilm.php';
+        require __DIR__ .'/../Views/searchFilm.php';
     }
 
     public function delete()
