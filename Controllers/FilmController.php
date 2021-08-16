@@ -17,18 +17,20 @@ class FilmController
             $films = $getFilms->getAll($_POST['sorting']);
         }
 
-        require 'Views\showFilms.php';
+        require __DIR__ .'\..\Views\showFilms.php';
+
+        //require 'home/angelina/Desktop/Test/Views/showFilms.php';
     }
 
     public function add()
     {
         if(!$_POST){
-            require_once 'Views\addFilm.php';
+            require_once __DIR__ .'\..\Views\addFilm.php';
         } else {
             $data = $_POST;
             $insert = new Film();
             $insert->insert($data);
-            require_once 'Views\addFilm.php';
+            require_once __DIR__ .'\..\Views\addFilm.php';
         }
     }
 
@@ -79,9 +81,9 @@ class FilmController
             $insert = new Film();
             $insert->import($films);
 
-            header('Location: /');
+            require_once __DIR__ .'\..\Views\addFilm.php';
         } else {
-            require 'Views\importFilm.php';
+            require __DIR__ .'\..\Views\importFilm.php';
         }
     }
 
@@ -96,7 +98,7 @@ class FilmController
             header('Location: /');
         }
 
-        require 'Views\searchFilm.php';
+        require __DIR__ .'\..\Views\searchFilm.php';
     }
 
     public function delete()
