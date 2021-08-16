@@ -57,8 +57,8 @@ class Router
 
     protected function getConfigs(): void
     {
-        $this->webRoutes = require 'Configs/Routes/web.php';
-        $this->appRoutes = require 'Configs/Routes/app.php';
+        $this->webRoutes = require __DIR__ .'\..\Configs\Routes\web.php';
+        $this->appRoutes = require __DIR__ .'\..\Configs\Routes\app.php';
     }
 
     protected function match(): bool

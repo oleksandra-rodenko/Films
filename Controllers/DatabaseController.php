@@ -23,7 +23,7 @@ class DatabaseController
 
     public function __construct()
     {
-        $config = require 'Configs/database.php';
+        $config = require __DIR__ .'\..\Configs\database.php';
 
         $this->host=$config[self::HOST];
         $this->port=$config[self::PORT];

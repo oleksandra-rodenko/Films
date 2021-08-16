@@ -16,10 +16,8 @@ class FilmController
         } else {
             $films = $getFilms->getAll($_POST['sorting']);
         }
-
         require __DIR__ .'\..\Views\showFilms.php';
 
-        //require 'home/angelina/Desktop/Test/Views/showFilms.php';
     }
 
     public function add()
