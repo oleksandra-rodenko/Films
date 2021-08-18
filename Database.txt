@@ -1,6 +1,6 @@
 CREATE TABLE films (
                        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                       title VARCHAR(255) NOT NULL UNIQUE,
+                       title VARCHAR(255) NOT NULL,
                        release_year YEAR NOT NULL,
                        format ENUM('VHS', 'DVD', 'Blu-Ray') NOT NULL,
                        stars VARCHAR(255) NOT NULL

@@ -3,9 +3,6 @@
 
 namespace Components;
 
-
-
-
 class Autoloader
 {
     private string $baseRout;

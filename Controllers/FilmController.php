@@ -11,12 +11,29 @@ class FilmController
     public function index()
     {
         $getFilms = new Film();
-        if(!array_key_exists('sorting', $_POST)) {
+
+        if(!array_key_exists('sorting', $_GET)) {
             $films = $getFilms->getAll();
+
         } else {
-            $films = $getFilms->getAll($_POST['sorting']);
+            $films = $getFilms->getAll($_GET['sorting']);
         }
+
+        $pagination = $getFilms->pagination();
         require __DIR__ .'/../Views/showFilms.php';
+        if (array_key_exists('page', $_GET)) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
+
+        if (array_key_exists('sorting', $_GET)) {
+            $sorting = $_GET['sorting'];
+        } else {
+            $sorting = 'no';
+        }
+
+        header("Location: /?page={$page}&sorting={$sorting}");
 
     }
 
@@ -36,8 +53,15 @@ class FilmController
     {
 
         $file = $_FILES['file'] ?? '';
+        $insert = new Film();
         if($file){
+
             move_uploaded_file($file['tmp_name'], "Storage/" . $file['name']);
+            $mimeType = mime_content_type("Storage/" . $file['name']);
+            if ($mimeType != 'text/plain') {
+                $insert->setError('File must have .txt extension');
+                header("Location: /film/add");exit;
+            }
             $uploadedFile = fopen("Storage/" . $file['name'], 'r');
             $data = [];
             while(!feof($uploadedFile)){
@@ -76,6 +100,8 @@ class FilmController
                 $films[$key]['format'] = $data['format'][$key];
                 $films[$key]['stars'] = $data['stars'][$key];
             }
+
+
             $insert = new Film();
             $insert->import($films);
 
@@ -95,7 +121,10 @@ class FilmController
         } else {
             header('Location: /');
         }
-
+        if (empty($films)) {
+            $getFilms->setError('No matches found');
+            header('Location: /');
+        }
         require __DIR__ .'/../Views/searchFilm.php';
     }
 

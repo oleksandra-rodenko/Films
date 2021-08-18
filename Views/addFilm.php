@@ -43,7 +43,7 @@
     <header>
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a href="/" class="btn btn-light">
+                <a href="/?page=1&sorting=no" class="btn btn-light">
                     Home
                 </a>
             </div>
@@ -82,6 +82,7 @@
                            value="<?php $insertData['title'] ?? '' ?>"
                            class="form-control"
                            id="InputTitle"
+                           pattern="[^ ][^<>;@#$%^&*]*"
                            placeholder="Title"
                            required>
                 </div>
@@ -89,7 +90,7 @@
                     <label for="InputReleaseYear" class="visually-hidden">Release Year</label>
                     <input type="number"
                            min="1901"
-                           max="2155"
+                           max="2021"
                            name="release_year"
                            value="<?php $insertData['releaseYear'] ?? '' ?>"
                            class="form-control"
@@ -109,7 +110,7 @@
                 <div class=" mb-3">
                     <label for="InputStars" class="visually-hidden">Stars</label>
                     <input type="text"
-                           pattern="[A-Za-z ,]*"
+                           pattern="[^ ][^0-9<>@#$%^&*/\]*"
                            name="stars"
                            value="<?php $insertData['InputStars'] ?? '' ?>"
                            class="form-control"

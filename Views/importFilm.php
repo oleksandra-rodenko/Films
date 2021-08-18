@@ -43,7 +43,7 @@
     <header>
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a href="/" class="btn btn-light">
+                <a href="/?page=1&sorting=no" class="btn btn-light">
                     Home
                 </a>
             </div>
